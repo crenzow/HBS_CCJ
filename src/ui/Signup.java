@@ -11,7 +11,7 @@ package ui;
 public class Signup extends javax.swing.JFrame {
 
     /**
-     * Creates new form Signup
+     * Creates new form Sign up
      */
     public Signup() {
         initComponents();
@@ -44,9 +44,9 @@ public class Signup extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setMinimumSize(new java.awt.Dimension(800, 600));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -106,7 +106,7 @@ public class Signup extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
