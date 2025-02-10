@@ -26,22 +26,73 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        stayeaseLBL = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        loginLBL = new javax.swing.JLabel();
+        emailLBL = new javax.swing.JLabel();
+        passwordLBL = new javax.swing.JLabel();
+        emailTXT = new javax.swing.JTextField();
+        loginBTN = new javax.swing.JButton();
+        passwordTXT = new javax.swing.JPasswordField();
+        backBTN = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1150, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        stayeaseLBL.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        stayeaseLBL.setText("StayEase");
+        jPanel1.add(stayeaseLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/200blackLOGO.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 170, 100));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        loginLBL.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        loginLBL.setText("LOGIN");
+        jPanel2.add(loginLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
+
+        emailLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        emailLBL.setText("EMAIL:");
+        jPanel2.add(emailLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, -1, -1));
+
+        passwordLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        passwordLBL.setText("PASSWORD:");
+        jPanel2.add(passwordLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, -1, -1));
+        jPanel2.add(emailTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 150, 30));
+
+        loginBTN.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        loginBTN.setText("LOGIN");
+        jPanel2.add(loginBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, 150, 40));
+        jPanel2.add(passwordTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 150, 30));
+
+        backBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back-button.png"))); // NOI18N
+        backBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBTNActionPerformed(evt);
+            }
+        });
+        jPanel2.add(backBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 600, 300));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 500));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBTNActionPerformed
+        Load loadFrame = new Load();
+        this.setVisible(false);
+        loadFrame.setVisible(true);
+    }//GEN-LAST:event_backBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +130,16 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBTN;
+    private javax.swing.JLabel emailLBL;
+    private javax.swing.JTextField emailTXT;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton loginBTN;
+    private javax.swing.JLabel loginLBL;
+    private javax.swing.JLabel passwordLBL;
+    private javax.swing.JPasswordField passwordTXT;
+    private javax.swing.JLabel stayeaseLBL;
     // End of variables declaration//GEN-END:variables
 }
