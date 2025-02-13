@@ -41,6 +41,8 @@ public class Signup extends javax.swing.JFrame {
         passwordTXT = new javax.swing.JPasswordField();
         singupBTN = new javax.swing.JButton();
         backBTN = new javax.swing.JButton();
+        usernameLBL = new javax.swing.JLabel();
+        usernameTXT = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
@@ -66,27 +68,33 @@ public class Signup extends javax.swing.JFrame {
 
         passwordLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         passwordLBL.setText("PASSWORD:");
-        jPanel2.add(passwordLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, -1, -1));
+        jPanel2.add(passwordLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, -1, -1));
 
         fnameLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         fnameLBL.setText("FULL NAME:");
-        jPanel2.add(fnameLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
+        jPanel2.add(fnameLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, -1));
 
         emailLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         emailLBL.setText("EMAIL:");
-        jPanel2.add(emailLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, -1, -1));
+        jPanel2.add(emailLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, -1));
 
         phonenumberLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         phonenumberLBL.setText("PHONE NUMBER:");
-        jPanel2.add(phonenumberLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, -1, -1));
-        jPanel2.add(emailTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 240, 30));
-        jPanel2.add(fnameTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 240, 30));
-        jPanel2.add(phonenumberTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 240, 30));
-        jPanel2.add(passwordTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 240, 30));
+        jPanel2.add(phonenumberLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
+        jPanel2.add(emailTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 240, 30));
+        jPanel2.add(fnameTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 240, 30));
+        jPanel2.add(phonenumberTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 240, 30));
+
+        passwordTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordTXTActionPerformed(evt);
+            }
+        });
+        jPanel2.add(passwordTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 240, 30));
 
         singupBTN.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         singupBTN.setText("SIGN UP");
-        jPanel2.add(singupBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, -1, -1));
+        jPanel2.add(singupBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 380, -1, -1));
 
         backBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back-button.png"))); // NOI18N
         backBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +103,11 @@ public class Signup extends javax.swing.JFrame {
             }
         });
         jPanel2.add(backBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
+
+        usernameLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        usernameLBL.setText("USERNAME:");
+        jPanel2.add(usernameLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, -1, -1));
+        jPanel2.add(usernameTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 240, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 680, 430));
 
@@ -118,6 +131,10 @@ public class Signup extends javax.swing.JFrame {
         this.setVisible(false);
         loadFrame.setVisible(true);
     }//GEN-LAST:event_backBTNActionPerformed
+
+    private void passwordTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordTXTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,5 +187,7 @@ public class Signup extends javax.swing.JFrame {
     private javax.swing.JTextField phonenumberTXT;
     private javax.swing.JButton singupBTN;
     private javax.swing.JLabel singupLBL;
+    private javax.swing.JLabel usernameLBL;
+    private javax.swing.JTextField usernameTXT;
     // End of variables declaration//GEN-END:variables
 }

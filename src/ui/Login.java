@@ -4,6 +4,11 @@
  */
 package ui;
 
+
+import dbConnection.DatabaseConnection;
+import java.sql.*;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Clarence
@@ -29,9 +34,9 @@ public class Login extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         loginLBL = new javax.swing.JLabel();
-        emailLBL = new javax.swing.JLabel();
+        usernameLBL = new javax.swing.JLabel();
         passwordLBL = new javax.swing.JLabel();
-        emailTXT = new javax.swing.JTextField();
+        usernameTXT = new javax.swing.JTextField();
         loginBTN = new javax.swing.JButton();
         passwordTXT = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
@@ -59,16 +64,16 @@ public class Login extends javax.swing.JFrame {
         loginLBL.setText("LOGIN");
         jPanel2.add(loginLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, -1, -1));
 
-        emailLBL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        emailLBL.setForeground(new java.awt.Color(10, 61, 98));
-        emailLBL.setText("USERNAME");
-        jPanel2.add(emailLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+        usernameLBL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        usernameLBL.setForeground(new java.awt.Color(10, 61, 98));
+        usernameLBL.setText("USERNAME");
+        jPanel2.add(usernameLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
         passwordLBL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         passwordLBL.setForeground(new java.awt.Color(10, 61, 98));
         passwordLBL.setText("PASSWORD");
         jPanel2.add(passwordLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
-        jPanel2.add(emailTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 270, 30));
+        jPanel2.add(usernameTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 270, 30));
 
         loginBTN.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         loginBTN.setText("LOGIN");
@@ -103,6 +108,12 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setForeground(new java.awt.Color(10, 61, 98));
         jLabel2.setText("SIGN IN");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 480, -1, 20));
 
         jLabel5.setText("Don't have a account?");
@@ -141,12 +152,75 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        
+         // TODO add your handling code here:
+        // Action for checkbox, for example, show/hide password when checkbox is checked
+    if (jCheckBox1.isSelected()) {
+        // Show the password by changing the echoChar
+        passwordTXT.setEchoChar((char) 0);  // Show the password in plain text
+    } else {
+        // Hide the password by setting the echoChar
+        passwordTXT.setEchoChar('*');  // Hide the password with asterisks
+    }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void loginBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBTNActionPerformed
         // TODO add your handling code here:
+        String username = usernameTXT.getText();
+    String password = new String(passwordTXT.getPassword()); 
+
+    if (username.isEmpty() || password.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please fill in all fields!", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    try {
+        // Get the database connection from the DatabaseConnection class
+        Connection conn = DatabaseConnection.getInstance().getConnection();
+
+        // SQL Query
+        String query = "SELECT 'admin' AS role FROM Admin WHERE username = ? AND password = ? " +
+                       "UNION " +
+                       "SELECT 'customer' AS role FROM Customer WHERE username = ? AND password = ?";
+        
+        PreparedStatement pst = conn.prepareStatement(query);
+        pst.setString(1, username);
+        pst.setString(2, password);
+        pst.setString(3, username);
+        pst.setString(4, password);
+        
+        // Execute Query
+        ResultSet rs = pst.executeQuery();
+
+        // Process Result
+        if (rs.next()) {
+            String role = rs.getString("role");
+
+            if (role.equals("admin")) {
+               // JOptionPane.showMessageDialog(this, "Welcome Admin!");
+                new Admin().setVisible(true); // Open Admin Dashboard
+            } else {
+               // JOptionPane.showMessageDialog(this, "Welcome Customer!");
+                new User().setVisible(true); // Open User Dashboard
+            }
+
+            this.dispose(); // Close Login Window
+        } else {
+            JOptionPane.showMessageDialog(this, "Invalid username or password!", "Login Failed", JOptionPane.ERROR_MESSAGE);
+        }
+
+        // Close Connection
+        rs.close();
+        pst.close();
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(this, "Database error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_loginBTNActionPerformed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        Signup signUpFrame = new Signup(); // Assuming SignUp is your frame class
+        signUpFrame.setVisible(true); // Show the sign-up frame
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -184,8 +258,6 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel emailLBL;
-    private javax.swing.JTextField emailTXT;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -202,5 +274,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel stayeaseLBL2;
     private javax.swing.JLabel stayeaseLBL3;
     private javax.swing.JLabel stayeaseLBL4;
+    private javax.swing.JLabel usernameLBL;
+    private javax.swing.JTextField usernameTXT;
     // End of variables declaration//GEN-END:variables
 }
