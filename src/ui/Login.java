@@ -131,7 +131,7 @@ public class Login extends javax.swing.JFrame {
         stayeaseLBL2.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         stayeaseLBL2.setForeground(new java.awt.Color(245, 245, 220));
         stayeaseLBL2.setText("TAY ");
-        jPanel1.add(stayeaseLBL2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 230, 90, -1));
+        jPanel1.add(stayeaseLBL2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 230, 90, 40));
 
         stayeaseLBL.setBackground(new java.awt.Color(245, 245, 220));
         stayeaseLBL.setFont(new java.awt.Font("Serif", 3, 70)); // NOI18N
@@ -143,7 +143,7 @@ public class Login extends javax.swing.JFrame {
         stayeaseLBL4.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         stayeaseLBL4.setForeground(new java.awt.Color(245, 245, 220));
         stayeaseLBL4.setText("ASE ");
-        jPanel1.add(stayeaseLBL4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 90, -1));
+        jPanel1.add(stayeaseLBL4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 130, 60));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 570));
 

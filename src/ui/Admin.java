@@ -129,35 +129,35 @@ public class Admin extends javax.swing.JFrame {
         jLabel1.setText("DASHBOARD");
         dashboardPNL.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 280, -1, -1));
 
-        JTabbedPane.addTab("tab1", dashboardPNL);
+        JTabbedPane.addTab("DASHBOARD", dashboardPNL);
 
         roomsPNL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setText("ROOMS");
         roomsPNL.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, -1, -1));
 
-        JTabbedPane.addTab("tab2", roomsPNL);
+        JTabbedPane.addTab("ROOMS", roomsPNL);
 
         bookingsPNL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setText("BOOKINGS");
         bookingsPNL.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, -1, -1));
 
-        JTabbedPane.addTab("tab3", bookingsPNL);
+        JTabbedPane.addTab("BOOKING", bookingsPNL);
 
         reportsPNL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setText("REPORTS");
-        reportsPNL.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 330, -1, -1));
+        reportsPNL.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, -1, -1));
 
-        JTabbedPane.addTab("tab4", reportsPNL);
+        JTabbedPane.addTab("REPORTS", reportsPNL);
 
         customersPNL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("CUSTOMERS");
-        customersPNL.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, -1, -1));
+        customersPNL.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, -1, -1));
 
-        JTabbedPane.addTab("tab5", customersPNL);
+        JTabbedPane.addTab("CUSTOMERS", customersPNL);
 
         getContentPane().add(JTabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, -30, 940, 780));
 
