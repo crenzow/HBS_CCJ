@@ -39,7 +39,22 @@ public class Admin extends javax.swing.JFrame {
         dashboardPNL = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         roomsPNL = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        addBTN = new javax.swing.JButton();
+        searchTXT = new javax.swing.JTextField();
+        roomNo = new javax.swing.JLabel();
+        roomType = new javax.swing.JLabel();
+        roomNoTXT = new javax.swing.JTextField();
+        roomTypeTXT = new javax.swing.JTextField();
+        priceTXT = new javax.swing.JTextField();
+        priceLBL = new javax.swing.JLabel();
+        statusLBL = new javax.swing.JLabel();
+        statusCBX = new javax.swing.JComboBox<>();
+        searchBTN1 = new javax.swing.JButton();
+        updateBTN = new javax.swing.JButton();
+        deleteBTN = new javax.swing.JButton();
+        clearBTN = new javax.swing.JButton();
         bookingsPNL = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         reportsPNL = new javax.swing.JPanel();
@@ -127,14 +142,99 @@ public class Admin extends javax.swing.JFrame {
         dashboardPNL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("DASHBOARD");
-        dashboardPNL.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 280, -1, -1));
+        dashboardPNL.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, -1, -1));
 
         JTabbedPane.addTab("DASHBOARD", dashboardPNL);
 
         roomsPNL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setText("ROOMS");
-        roomsPNL.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, -1, -1));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Room No.", "Room Type", "Price", "Status"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        roomsPNL.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 430, 570));
+
+        addBTN.setText("ADD");
+        addBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBTNActionPerformed(evt);
+            }
+        });
+        roomsPNL.add(addBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 460, 130, 40));
+        roomsPNL.add(searchTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 100, 200, 40));
+
+        roomNo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        roomNo.setText("Room No:");
+        roomsPNL.add(roomNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 180, 90, 40));
+
+        roomType.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        roomType.setText("Room Type:");
+        roomsPNL.add(roomType, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 240, 110, 40));
+
+        roomNoTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roomNoTXTActionPerformed(evt);
+            }
+        });
+        roomsPNL.add(roomNoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 180, 160, 40));
+        roomsPNL.add(roomTypeTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 240, 160, 40));
+        roomsPNL.add(priceTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 300, 160, 40));
+
+        priceLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        priceLBL.setText("Price:");
+        roomsPNL.add(priceLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 300, 70, 40));
+
+        statusLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        statusLBL.setText("Status:");
+        roomsPNL.add(statusLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 360, 80, 40));
+
+        statusCBX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusCBXActionPerformed(evt);
+            }
+        });
+        roomsPNL.add(statusCBX, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 360, 160, 40));
+
+        searchBTN1.setText("SEARCH");
+        searchBTN1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBTN1ActionPerformed(evt);
+            }
+        });
+        roomsPNL.add(searchBTN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 100, 80, 40));
+
+        updateBTN.setText("UPDATE");
+        updateBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBTNActionPerformed(evt);
+            }
+        });
+        roomsPNL.add(updateBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 460, 130, 40));
+
+        deleteBTN.setText("DELETE");
+        deleteBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBTNActionPerformed(evt);
+            }
+        });
+        roomsPNL.add(deleteBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 510, 130, 40));
+
+        clearBTN.setText("CLEAR");
+        clearBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearBTNActionPerformed(evt);
+            }
+        });
+        roomsPNL.add(clearBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 510, 130, 40));
 
         JTabbedPane.addTab("ROOMS", roomsPNL);
 
@@ -191,6 +291,34 @@ public class Admin extends javax.swing.JFrame {
         JTabbedPane.setSelectedIndex(4);
     }//GEN-LAST:event_customersBTNActionPerformed
 
+    private void addBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addBTNActionPerformed
+
+    private void roomNoTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomNoTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roomNoTXTActionPerformed
+
+    private void statusCBXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusCBXActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statusCBXActionPerformed
+
+    private void searchBTN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBTN1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchBTN1ActionPerformed
+
+    private void updateBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateBTNActionPerformed
+
+    private void deleteBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteBTNActionPerformed
+
+    private void clearBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clearBTNActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -228,24 +356,39 @@ public class Admin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane JTabbedPane;
+    private javax.swing.JButton addBTN;
     private javax.swing.JButton bookingBTN;
     private javax.swing.JPanel bookingsPNL;
+    private javax.swing.JButton clearBTN;
     private javax.swing.JButton customersBTN;
     private javax.swing.JPanel customersPNL;
     private javax.swing.JButton dashboardBTN;
     private javax.swing.JPanel dashboardPNL;
+    private javax.swing.JButton deleteBTN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logoLBL;
     private javax.swing.JButton logoutBTN;
+    private javax.swing.JLabel priceLBL;
+    private javax.swing.JTextField priceTXT;
     private javax.swing.JButton reportsBTN;
     private javax.swing.JPanel reportsPNL;
+    private javax.swing.JLabel roomNo;
+    private javax.swing.JTextField roomNoTXT;
+    private javax.swing.JLabel roomType;
+    private javax.swing.JTextField roomTypeTXT;
     private javax.swing.JButton roomsBTN;
     private javax.swing.JPanel roomsPNL;
+    private javax.swing.JButton searchBTN1;
+    private javax.swing.JTextField searchTXT;
+    private javax.swing.JComboBox<String> statusCBX;
+    private javax.swing.JLabel statusLBL;
+    private javax.swing.JButton updateBTN;
     // End of variables declaration//GEN-END:variables
 }
