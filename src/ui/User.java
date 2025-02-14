@@ -3,6 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ui;
+import dbConnection.DatabaseConnection;
+import java.awt.List;
+import java.sql.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -38,16 +43,27 @@ public class User extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         bookingsPNL = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        roomsPNL = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        endDateJcalendar = new de.wannawork.jcalendar.JCalendarComboBox();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BookBTN = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
+        startingdateJcalendar = new de.wannawork.jcalendar.JCalendarComboBox();
+        searchTXT = new javax.swing.JTextField();
+        roomNoTXT = new javax.swing.JTextField();
+        roomTypeTXT = new javax.swing.JTextField();
+        searchBtn = new javax.swing.JButton();
+        updateBtn = new javax.swing.JButton();
+        roomsPNL = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        bg = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -110,56 +126,119 @@ public class User extends javax.swing.JFrame {
 
         dashboardPNL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("DASHBOARD");
-        dashboardPNL.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 280, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dashborad.png"))); // NOI18N
+        dashboardPNL.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-210, 0, -1, -1));
 
         JTabbedPane.addTab("DASHBOARD", dashboardPNL);
 
         bookingsPNL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setText("BOOKINGS");
-        bookingsPNL.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel4.setText("BOOK NOW!");
+        bookingsPNL.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, -1, -1));
+        bookingsPNL.add(endDateJcalendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 430, 200, 40));
 
-        JTabbedPane.addTab("BOOKING", bookingsPNL);
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel6.setText("Booking Record");
+        bookingsPNL.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 140, -1, -1));
 
-        roomsPNL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setText("End Date");
+        bookingsPNL.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, -1, 40));
 
-        jLabel5.setText("ROOMS");
-        roomsPNL.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, -1, -1));
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel8.setText("Room Number");
+        bookingsPNL.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, 40));
 
-        jLabel2.setText("Suite");
-        roomsPNL.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 300, -1, -1));
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel9.setText("Starting Date");
+        bookingsPNL.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, 40));
 
-        jLabel3.setText("Single");
-        roomsPNL.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, -1, -1));
-
-        jLabel6.setText("Double");
-        roomsPNL.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 270, -1, -1));
-
-        jLabel7.setText("DESCRIPTION");
-        roomsPNL.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 370, -1, -1));
-
-        jLabel8.setText("DESCRIPTION");
-        roomsPNL.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, -1, -1));
-
-        jLabel9.setText("DESCRIPTION");
-        roomsPNL.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 370, -1, 10));
-
-        jButton1.setText("Book");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BookBTN.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        BookBTN.setText("Book");
+        BookBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BookBTNActionPerformed(evt);
             }
         });
-        roomsPNL.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 620, -1, -1));
+        bookingsPNL.add(BookBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, 210, 50));
 
-        jButton2.setText("Book");
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton2.setText("Cancel Book");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        roomsPNL.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 600, -1, -1));
+        bookingsPNL.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 650, 210, 50));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Booking ID", "Room ID", "Check in Date", "Status"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        bookingsPNL.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, -1, 520));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel10.setText("Room Type");
+        bookingsPNL.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, 40));
+        bookingsPNL.add(startingdateJcalendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 200, 40));
+
+        searchTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTXTActionPerformed(evt);
+            }
+        });
+        bookingsPNL.add(searchTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 200, 40));
+
+        roomNoTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roomNoTXTActionPerformed(evt);
+            }
+        });
+        bookingsPNL.add(roomNoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 200, 40));
+
+        roomTypeTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roomTypeTXTActionPerformed(evt);
+            }
+        });
+        bookingsPNL.add(roomTypeTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 200, 40));
+
+        searchBtn.setText("Search");
+        bookingsPNL.add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, -1, 40));
+
+        updateBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        updateBtn.setText("Update Booking");
+        bookingsPNL.add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 580, 210, 50));
+
+        JTabbedPane.addTab("BOOKING", bookingsPNL);
+
+        roomsPNL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel3.setText("₱1200");
+        roomsPNL.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel5.setText("₱3500");
+        roomsPNL.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 110, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel2.setText("₱2000");
+        roomsPNL.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
+
+        bg.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/roomsbg.png"))); // NOI18N
+        roomsPNL.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(-210, 0, -1, -1));
 
         JTabbedPane.addTab("ROOMS", roomsPNL);
 
@@ -180,20 +259,56 @@ public class User extends javax.swing.JFrame {
     }//GEN-LAST:event_dashboardBTNActionPerformed
 
     private void roomsBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomsBTNActionPerformed
-        JTabbedPane.setSelectedIndex(1);
+        JTabbedPane.setSelectedIndex(2);
     }//GEN-LAST:event_roomsBTNActionPerformed
 
     private void bookingBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingBTNActionPerformed
-        JTabbedPane.setSelectedIndex(2);
+        JTabbedPane.setSelectedIndex(1);
     }//GEN-LAST:event_bookingBTNActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void searchTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchTXTActionPerformed
+
+    private void roomNoTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomNoTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roomNoTXTActionPerformed
+
+    private void roomTypeTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomTypeTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roomTypeTXTActionPerformed
+
+    private void BookBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookBTNActionPerformed
+        Connection conn = DatabaseConnection.getInstance().getConnection();
+        String roomType = roomTypeTXT.getText();
+        int roomID = Integer.parseInt(roomNoTXT.getText());
+        java.util.Date startDate = startingdateJcalendar.getDate();
+        java.util.Date endDate = endDateJcalendar.getDate();
+        java.sql.Date sqlStartDate = new java.sql.Date(startDate.getTime());
+        java.sql.Date sqlEndDate = new java.sql.Date(endDate.getTime());
+
+        String insertSQL = "INSERT INTO Booking (checkInDate, checkOutDate, status, customerID, roomID) VALUES (?, ?, ?, ?, ?)";
+        
+
+        try (PreparedStatement stmt = conn.prepareStatement(insertSQL)) {
+            stmt.setDate(1, sqlStartDate);
+            stmt.setDate(2, sqlEndDate);
+            stmt.setString(3, "Confirmed"); // Default status
+            stmt.setInt(4, 1); // Example customer ID, should be dynamic
+            stmt.setInt(5, roomID);
+
+            int rowsInserted = stmt.executeUpdate();
+            if (rowsInserted > 0) {
+                JOptionPane.showMessageDialog(null, "Booking Added Successfully!");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_BookBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,14 +347,17 @@ public class User extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BookBTN;
     private javax.swing.JTabbedPane JTabbedPane;
+    private javax.swing.JLabel bg;
     private javax.swing.JButton bookingBTN;
     private javax.swing.JPanel bookingsPNL;
     private javax.swing.JButton dashboardBTN;
     private javax.swing.JPanel dashboardPNL;
-    private javax.swing.JButton jButton1;
+    private de.wannawork.jcalendar.JCalendarComboBox endDateJcalendar;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -250,9 +368,17 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logoLBL;
     private javax.swing.JButton logoutBTN;
+    private javax.swing.JTextField roomNoTXT;
+    private javax.swing.JTextField roomTypeTXT;
     private javax.swing.JButton roomsBTN;
     private javax.swing.JPanel roomsPNL;
+    private javax.swing.JButton searchBtn;
+    private javax.swing.JTextField searchTXT;
+    private de.wannawork.jcalendar.JCalendarComboBox startingdateJcalendar;
+    private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
 }
