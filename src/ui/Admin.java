@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ui;
-
+import dbConnection.DatabaseConnection;
+import java.sql.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author JESSEN SALAYSAY
@@ -15,6 +18,9 @@ public class Admin extends javax.swing.JFrame {
      */
     public Admin() {
         initComponents();
+        loadRoomTBL();
+        fetchStatusFromDatabase();
+        
     }
 
     /**
@@ -40,7 +46,7 @@ public class Admin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         roomsPNL = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        roomTable = new javax.swing.JTable();
         addBTN = new javax.swing.JButton();
         searchTXT = new javax.swing.JTextField();
         roomNo = new javax.swing.JLabel();
@@ -148,7 +154,7 @@ public class Admin extends javax.swing.JFrame {
 
         roomsPNL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        roomTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -159,7 +165,7 @@ public class Admin extends javax.swing.JFrame {
                 "Room No.", "Room Type", "Price", "Status"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(roomTable);
 
         roomsPNL.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 430, 570));
 
@@ -292,7 +298,55 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_customersBTNActionPerformed
 
     private void addBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBTNActionPerformed
-        // TODO add your handling code here:
+        String roomNo = roomNoTXT.getText();
+    String search = searchTXT.getText();
+    String roomType = roomTypeTXT.getText();
+    String price = priceTXT.getText();
+    String status = (String) statusCBX.getSelectedItem(); // Get selected status
+
+    // Validate inputs (you can adjust validation rules)
+    if (roomNo.isEmpty() || search.isEmpty() || roomType.isEmpty() || price.isEmpty() || status == null) {
+        JOptionPane.showMessageDialog(this, "Please fill all fields before adding the room.");
+        return;
+    }
+
+    // Convert price to a valid format (double) if needed
+    double roomPrice;
+    try {
+        roomPrice = Double.parseDouble(price);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Please enter a valid price.");
+        return;
+    }
+
+    // Create the SQL query to insert data into the database
+    String query = "INSERT INTO rooms (roomNo, searchKey, roomType, price, status) VALUES (?, ?, ?, ?, ?)";
+
+    // Connect to the database and execute the query
+    try (Connection conn = DatabaseConnection.getInstance().getConnection();
+         PreparedStatement stmt = conn.prepareStatement(query)) {
+
+        // Set parameters for the prepared statement
+        stmt.setString(1, roomNo);
+        stmt.setString(2, search);
+        stmt.setString(3, roomType);
+        stmt.setDouble(4, roomPrice);
+        stmt.setString(5, status);
+
+        // Execute the update
+        int rowsAffected = stmt.executeUpdate();
+
+        if (rowsAffected > 0) {
+            JOptionPane.showMessageDialog(this, "Room added successfully!");
+            // Optionally, clear the fields after successful addition
+            clearFields();
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to add room.");
+        }
+    } catch (SQLException e) {
+        // Handle SQL exceptions
+        JOptionPane.showMessageDialog(this, "Error occurred while adding room: " + e.getMessage());
+    }
     }//GEN-LAST:event_addBTNActionPerformed
 
     private void roomNoTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomNoTXTActionPerformed
@@ -300,7 +354,11 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_roomNoTXTActionPerformed
 
     private void statusCBXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusCBXActionPerformed
-        // TODO add your handling code here:
+        // Only fetch data if the combo box is empty
+    if (statusCBX.getItemCount() == 0) {
+        fetchStatusFromDatabase();
+    }
+
     }//GEN-LAST:event_statusCBXActionPerformed
 
     private void searchBTN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBTN1ActionPerformed
@@ -316,7 +374,7 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteBTNActionPerformed
 
     private void clearBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBTNActionPerformed
-        // TODO add your handling code here:
+        clearFields();
     }//GEN-LAST:event_clearBTNActionPerformed
 
     /**
@@ -354,6 +412,71 @@ public class Admin extends javax.swing.JFrame {
         });
     }
 
+public void loadRoomTBL() {
+        // SQL query to fetch room data
+        String query = "SELECT roomID, roomType, price, availabilityStatus FROM room";
+
+        // Get the database connection from the DatabaseConnection singleton
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            // Create a DefaultTableModel to handle the table data
+            DefaultTableModel model = (DefaultTableModel) roomTable.getModel();
+            model.setRowCount(0); // Clear existing rows
+
+            // Iterate over the result set and add rows to the table
+            while (rs.next()) {
+                int roomID = rs.getInt("roomID");
+                String roomType = rs.getString("roomType");
+                double price = rs.getDouble("price");
+                String availabilityStatus = rs.getString("availabilityStatus");
+
+                // Add row to the table
+                model.addRow(new Object[]{roomID, roomType, price, availabilityStatus});
+            }
+
+        } catch (SQLException e) {
+            // Log or handle the exception as needed
+            e.printStackTrace();
+            // Optionally, show a user-friendly message in the UI
+            // JOptionPane.showMessageDialog(null, "Error loading room data: " + e.getMessage());
+        }
+    }
+
+    private void clearFields() {
+    roomNoTXT.setText("");
+    searchTXT.setText("");
+    roomTypeTXT.setText("");
+    priceTXT.setText("");
+    statusCBX.setSelectedIndex(-1);
+}
+
+// Method to fetch statuses from the database and populate the combo box
+private void fetchStatusFromDatabase() {
+    String query = "SELECT DISTINCT status FROM rooms"; // Fetch distinct statuses from the room table
+
+    try (Connection conn = DatabaseConnection.getInstance().getConnection();
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(query)) {
+
+        // Clear existing items
+        statusCBX.removeAllItems();
+
+        // Add default or placeholder value (optional)
+        statusCBX.addItem("Select Status");
+
+        // Loop through result set and add each status to the combo box
+        while (rs.next()) {
+            String status = rs.getString("status");
+            statusCBX.addItem(status);
+        }
+
+    } catch (SQLException e) {
+        // Handle errors (e.g., show a message to the user)
+        JOptionPane.showMessageDialog(this, "Error fetching status data: " + e.getMessage());
+    }}
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane JTabbedPane;
     private javax.swing.JButton addBTN;
@@ -372,7 +495,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logoLBL;
     private javax.swing.JButton logoutBTN;
     private javax.swing.JLabel priceLBL;
@@ -381,6 +503,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JPanel reportsPNL;
     private javax.swing.JLabel roomNo;
     private javax.swing.JTextField roomNoTXT;
+    private javax.swing.JTable roomTable;
     private javax.swing.JLabel roomType;
     private javax.swing.JTextField roomTypeTXT;
     private javax.swing.JButton roomsBTN;
