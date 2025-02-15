@@ -65,10 +65,11 @@ public class Signup extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
         jPanel1.setBackground(new java.awt.Color(10, 61, 98));
-        jPanel1.setMinimumSize(new java.awt.Dimension(800, 600));
-        jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
+        jPanel1.setMinimumSize(new java.awt.Dimension(700, 600));
+        jPanel1.setPreferredSize(new java.awt.Dimension(700, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         backBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back.png"))); // NOI18N
@@ -79,44 +80,45 @@ public class Signup extends javax.swing.JFrame {
         });
         jPanel1.add(backBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 40));
 
-        jPanel2.setBackground(new java.awt.Color(235, 235, 235));
+        jPanel2.setMinimumSize(new java.awt.Dimension(310, 600));
+        jPanel2.setPreferredSize(new java.awt.Dimension(310, 600));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         singupLBL.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         singupLBL.setText("SIGN UP");
-        jPanel2.add(singupLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 100, -1));
+        jPanel2.add(singupLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 100, -1));
 
         passwordLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         passwordLBL.setText("PASSWORD:");
-        jPanel2.add(passwordLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, -1, -1));
+        jPanel2.add(passwordLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, -1, -1));
 
         fnameLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         fnameLBL.setText("FULL NAME:");
-        jPanel2.add(fnameLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
+        jPanel2.add(fnameLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, -1));
 
         emailLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         emailLBL.setText("EMAIL:");
-        jPanel2.add(emailLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
+        jPanel2.add(emailLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, -1));
 
         phonenumberLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         phonenumberLBL.setText("PHONE NUMBER:");
-        jPanel2.add(phonenumberLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
-        jPanel2.add(emailTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 240, 30));
+        jPanel2.add(phonenumberLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
+        jPanel2.add(emailTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 240, 30));
 
         fnameTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fnameTXTActionPerformed(evt);
             }
         });
-        jPanel2.add(fnameTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 240, 30));
-        jPanel2.add(phonenumberTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 240, 30));
+        jPanel2.add(fnameTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 240, 30));
+        jPanel2.add(phonenumberTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 240, 30));
 
         passwordTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordTXTActionPerformed(evt);
             }
         });
-        jPanel2.add(passwordTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 240, 30));
+        jPanel2.add(passwordTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, 240, 30));
 
         singupBTN.setBackground(new java.awt.Color(10, 61, 98));
         singupBTN.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -127,20 +129,20 @@ public class Signup extends javax.swing.JFrame {
                 singupBTNActionPerformed(evt);
             }
         });
-        jPanel2.add(singupBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, -1, -1));
+        jPanel2.add(singupBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, -1, -1));
 
         usernameLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         usernameLBL.setText("USERNAME:");
-        jPanel2.add(usernameLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, -1));
+        jPanel2.add(usernameLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, -1, -1));
 
         usernameTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usernameTXTActionPerformed(evt);
             }
         });
-        jPanel2.add(usernameTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 240, 30));
+        jPanel2.add(usernameTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 240, 30));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 390, 600));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 340, 600));
 
         stayeaseLBL6.setBackground(new java.awt.Color(245, 245, 220));
         stayeaseLBL6.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
@@ -170,7 +172,9 @@ public class Signup extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
