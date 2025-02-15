@@ -20,7 +20,6 @@ public class Signup extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         singupLBL = new javax.swing.JLabel();
@@ -36,6 +35,9 @@ public class Signup extends javax.swing.JFrame {
         backBTN = new javax.swing.JButton();
         usernameLBL = new javax.swing.JLabel();
         usernameTXT = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
@@ -45,20 +47,18 @@ public class Signup extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/200blackLOGO.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 164, 97));
-
         jLabel2.setBackground(new java.awt.Color(245, 245, 220));
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel2.setText("STAYEASE");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, -1, -1));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 70)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(245, 245, 220));
+        jLabel2.setText("S");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         singupLBL.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         singupLBL.setText("SIGN UP");
-        jPanel2.add(singupLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 100, -1));
+        jPanel2.add(singupLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 100, -1));
 
         passwordLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         passwordLBL.setText("PASSWORD:");
@@ -92,22 +92,24 @@ public class Signup extends javax.swing.JFrame {
         });
         jPanel2.add(passwordTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 240, 30));
 
+        singupBTN.setBackground(new java.awt.Color(10, 61, 98));
         singupBTN.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        singupBTN.setForeground(new java.awt.Color(245, 245, 220));
         singupBTN.setText("SIGN UP");
         singupBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 singupBTNActionPerformed(evt);
             }
         });
-        jPanel2.add(singupBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 380, -1, -1));
+        jPanel2.add(singupBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, -1, -1));
 
-        backBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back-button.png"))); // NOI18N
+        backBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back.png"))); // NOI18N
         backBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBTNActionPerformed(evt);
             }
         });
-        jPanel2.add(backBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
+        jPanel2.add(backBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 40));
 
         usernameLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         usernameLBL.setText("USERNAME:");
@@ -115,6 +117,24 @@ public class Signup extends javax.swing.JFrame {
         jPanel2.add(usernameTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 240, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 680, 430));
+
+        jLabel3.setBackground(new java.awt.Color(245, 245, 220));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(245, 245, 220));
+        jLabel3.setText("TAY");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
+
+        jLabel4.setBackground(new java.awt.Color(245, 245, 220));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 70)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(245, 245, 220));
+        jLabel4.setText("E");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
+
+        jLabel5.setBackground(new java.awt.Color(245, 245, 220));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(245, 245, 220));
+        jLabel5.setText("ASE");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,9 +152,9 @@ public class Signup extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBTNActionPerformed
-        Load loadFrame = new Load();
+        Login loginFrame = new Login();
         this.setVisible(false);
-        loadFrame.setVisible(true);
+        loginFrame.setVisible(true);
     }//GEN-LAST:event_backBTNActionPerformed
 
     private void passwordTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTXTActionPerformed
@@ -232,8 +252,10 @@ public class Signup extends javax.swing.JFrame {
     private javax.swing.JTextField emailTXT;
     private javax.swing.JLabel fnameLBL;
     private javax.swing.JTextField fnameTXT;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel passwordLBL;

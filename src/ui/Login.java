@@ -31,6 +31,7 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         loginLBL = new javax.swing.JLabel();
@@ -49,6 +50,8 @@ public class Login extends javax.swing.JFrame {
         stayeaseLBL2 = new javax.swing.JLabel();
         stayeaseLBL = new javax.swing.JLabel();
         stayeaseLBL4 = new javax.swing.JLabel();
+
+        jLabel6.setText("jLabel6");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -264,6 +267,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton loginBTN;

@@ -4,10 +4,15 @@
  */
 package ui;
 import dbConnection.DatabaseConnection;
-import java.awt.List;
-import java.sql.*;
-import javax.swing.JOptionPane;
+
 import javax.swing.table.DefaultTableModel;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -20,6 +25,7 @@ public class User extends javax.swing.JFrame {
      */
     public User() {
         initComponents();
+        loadSimpleBookingDataToTable();
     }
 
     /**
@@ -40,6 +46,7 @@ public class User extends javax.swing.JFrame {
         bookingBTN = new javax.swing.JButton();
         JTabbedPane = new javax.swing.JTabbedPane();
         dashboardPNL = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         bookingsPNL = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -51,7 +58,7 @@ public class User extends javax.swing.JFrame {
         BookBTN = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        bookingTBL = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         startingdateJcalendar = new de.wannawork.jcalendar.JCalendarComboBox();
         searchTXT = new javax.swing.JTextField();
@@ -59,6 +66,7 @@ public class User extends javax.swing.JFrame {
         roomTypeTXT = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
         roomsPNL = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -126,6 +134,10 @@ public class User extends javax.swing.JFrame {
 
         dashboardPNL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel11.setFont(new java.awt.Font("Serif", 1, 100)); // NOI18N
+        jLabel11.setText("HELLO!");
+        dashboardPNL.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dashborad.png"))); // NOI18N
         dashboardPNL.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-210, 0, -1, -1));
 
@@ -172,7 +184,7 @@ public class User extends javax.swing.JFrame {
         });
         bookingsPNL.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 650, 210, 50));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        bookingTBL.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -183,7 +195,7 @@ public class User extends javax.swing.JFrame {
                 "Booking ID", "Room ID", "Check in Date", "Status"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(bookingTBL);
 
         bookingsPNL.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, -1, 520));
 
@@ -214,11 +226,20 @@ public class User extends javax.swing.JFrame {
         bookingsPNL.add(roomTypeTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 200, 40));
 
         searchBtn.setText("Search");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
         bookingsPNL.add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, -1, 40));
 
         updateBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         updateBtn.setText("Update Booking");
         bookingsPNL.add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 580, 210, 50));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/BG.png"))); // NOI18N
+        jLabel12.setText("jLabel12");
+        bookingsPNL.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(-210, 0, -1, -1));
 
         JTabbedPane.addTab("BOOKING", bookingsPNL);
 
@@ -249,9 +270,9 @@ public class User extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBTNActionPerformed
-        Load loadFrame = new Load();
+        Login loginFrame = new Login();
         this.setVisible(false);
-        loadFrame.setVisible(true);
+        loginFrame.setVisible(true);
     }//GEN-LAST:event_logoutBTNActionPerformed
 
     private void dashboardBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardBTNActionPerformed
@@ -283,33 +304,108 @@ public class User extends javax.swing.JFrame {
     }//GEN-LAST:event_roomTypeTXTActionPerformed
 
     private void BookBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookBTNActionPerformed
-        Connection conn = DatabaseConnection.getInstance().getConnection();
-        String roomType = roomTypeTXT.getText();
-        int roomID = Integer.parseInt(roomNoTXT.getText());
-        java.util.Date startDate = startingdateJcalendar.getDate();
-        java.util.Date endDate = endDateJcalendar.getDate();
-        java.sql.Date sqlStartDate = new java.sql.Date(startDate.getTime());
-        java.sql.Date sqlEndDate = new java.sql.Date(endDate.getTime());
 
-        String insertSQL = "INSERT INTO Booking (checkInDate, checkOutDate, status, customerID, roomID) VALUES (?, ?, ?, ?, ?)";
-        
-
-        try (PreparedStatement stmt = conn.prepareStatement(insertSQL)) {
-            stmt.setDate(1, sqlStartDate);
-            stmt.setDate(2, sqlEndDate);
-            stmt.setString(3, "Confirmed"); // Default status
-            stmt.setInt(4, 1); // Example customer ID, should be dynamic
-            stmt.setInt(5, roomID);
-
-            int rowsInserted = stmt.executeUpdate();
-            if (rowsInserted > 0) {
-                JOptionPane.showMessageDialog(null, "Booking Added Successfully!");
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
     }//GEN-LAST:event_BookBTNActionPerformed
 
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+    // Get Booking ID from search field
+    String bookingID = searchTXT.getText().trim();
+
+    // Validate input (ensure it's not empty)
+    if (bookingID.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Please enter a Booking ID", "Warning", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    // SQL query to fetch booking details including room type
+    String query = "SELECT b.bookingID, b.roomID, b.checkInDate, b.checkOutDate, r.roomType " +
+                   "FROM booking b " +
+                   "JOIN room r ON b.roomID = r.roomID " + // Join booking table with room table
+                   "WHERE b.bookingID = ?";
+
+    // Get the existing database connection
+    Connection conn = DatabaseConnection.getInstance().getConnection();
+
+    // Ensure connection is not null before proceeding
+    if (conn == null) {
+        JOptionPane.showMessageDialog(null, "Database connection error", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    try (PreparedStatement ps = conn.prepareStatement(query)) {
+        ps.setString(1, bookingID); // Set the bookingID parameter
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            // Fetch values from result set
+            int fetchedRoomID = rs.getInt("roomID");
+            String fetchedRoomType = rs.getString("roomType"); // Get room type
+            Date startDate = rs.getDate("checkInDate");
+            Date endDate = rs.getDate("checkOutDate");
+
+            // Display roomType in searchTXT instead of roomTypeTXT
+            roomTypeTXT.setText(fetchedRoomType); // Show roomType in search field
+            roomNoTXT.setText(String.valueOf(fetchedRoomID));
+            startingdateJcalendar.setDate(startDate);
+            endDateJcalendar.setDate(endDate);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Booking not found", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error retrieving booking data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_searchBtnActionPerformed
+    
+    public void loadSimpleBookingDataToTable() {
+    // SQL query to fetch booking data (only bookingID, roomID, checkInDate, and status)
+    String query = "SELECT bookingID, roomID, checkInDate, status FROM booking";
+
+    // Get the existing database connection from the DatabaseConnection singleton
+    Connection conn = DatabaseConnection.getInstance().getConnection();
+
+    // Ensure the connection is not null before proceeding
+    if (conn == null) {
+        JOptionPane.showMessageDialog(null, "Unable to connect to the database", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Prepare the PreparedStatement and ResultSet to execute the query
+    try (PreparedStatement ps = conn.prepareStatement(query);
+         ResultSet rs = ps.executeQuery()) {
+
+        // Create a DefaultTableModel to handle the table data
+        DefaultTableModel model = (DefaultTableModel) bookingTBL.getModel();
+        model.setRowCount(0); // Clear existing rows
+
+        // Iterate over the result set and add rows to the table
+        while (rs.next()) {
+            int bookingID = rs.getInt("bookingID");
+            int roomID = rs.getInt("roomID");
+            Date checkInDate = rs.getDate("checkInDate");
+            String status = rs.getString("status");
+
+            // Add row to the table
+            model.addRow(new Object[]{bookingID, roomID, checkInDate, status});
+        }
+
+    } catch (SQLException e) {
+        // Log or handle the exception as needed
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error loading booking data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+    private void clearFields() {
+    roomTypeTXT.setText("");  // Clear room type field
+    roomNoTXT.setText("");    // Clear room number field
+    searchTXT.setText("");    // Clear search field
+    startingdateJcalendar.setDate(null); // Clear start date
+    endDateJcalendar.setDate(null);      // Clear end date
+}
+    
     /**
      * @param args the command line arguments
      */
@@ -351,6 +447,7 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JTabbedPane JTabbedPane;
     private javax.swing.JLabel bg;
     private javax.swing.JButton bookingBTN;
+    private javax.swing.JTable bookingTBL;
     private javax.swing.JPanel bookingsPNL;
     private javax.swing.JButton dashboardBTN;
     private javax.swing.JPanel dashboardPNL;
@@ -358,6 +455,8 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -369,7 +468,6 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logoLBL;
     private javax.swing.JButton logoutBTN;
     private javax.swing.JTextField roomNoTXT;

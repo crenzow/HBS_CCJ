@@ -20,7 +20,8 @@ public class Admin extends javax.swing.JFrame {
     public Admin() {
         initComponents();
         loadRoomDataToTable();
-     
+        loadBookingDataToTable();  
+        loadCustomerDataToTable();
         
     }
 
@@ -34,16 +35,24 @@ public class Admin extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel6 = new javax.swing.JPanel();
+        stayeaseLBL3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         logoutBTN = new javax.swing.JButton();
         logoLBL = new javax.swing.JLabel();
         dashboardBTN = new javax.swing.JButton();
         roomsBTN = new javax.swing.JButton();
         bookingBTN = new javax.swing.JButton();
-        reportsBTN = new javax.swing.JButton();
         customersBTN = new javax.swing.JButton();
+        logoLBL1 = new javax.swing.JLabel();
         JTabbedPane = new javax.swing.JTabbedPane();
         dashboardPNL = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
+        jToggleButton3 = new javax.swing.JToggleButton();
+        CUSTOMERBTN = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         roomsPNL = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -62,12 +71,20 @@ public class Admin extends javax.swing.JFrame {
         updateBTN = new javax.swing.JButton();
         deleteBTN = new javax.swing.JButton();
         clearBTN = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         bookingsPNL = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        bookingTBL = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         reportsPNL = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         customersPNL = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        customerTBL = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -79,6 +96,11 @@ public class Admin extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
+
+        stayeaseLBL3.setBackground(new java.awt.Color(245, 245, 220));
+        stayeaseLBL3.setFont(new java.awt.Font("Serif", 3, 70)); // NOI18N
+        stayeaseLBL3.setForeground(new java.awt.Color(245, 245, 220));
+        stayeaseLBL3.setText("S");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -94,7 +116,7 @@ public class Admin extends javax.swing.JFrame {
                 logoutBTNActionPerformed(evt);
             }
         });
-        jPanel2.add(logoutBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, 150, 40));
+        jPanel2.add(logoutBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 150, 40));
 
         logoLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/200whiteLOGO.png"))); // NOI18N
         jPanel2.add(logoLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, -1));
@@ -126,15 +148,6 @@ public class Admin extends javax.swing.JFrame {
         });
         jPanel2.add(bookingBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 150, 40));
 
-        reportsBTN.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        reportsBTN.setText("REPORTS");
-        reportsBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reportsBTNActionPerformed(evt);
-            }
-        });
-        jPanel2.add(reportsBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 150, 40));
-
         customersBTN.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         customersBTN.setText("CUSTOMERS");
         customersBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -142,14 +155,53 @@ public class Admin extends javax.swing.JFrame {
                 customersBTNActionPerformed(evt);
             }
         });
-        jPanel2.add(customersBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 150, 40));
+        jPanel2.add(customersBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 150, 40));
+
+        logoLBL1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/200whiteLOGO.png"))); // NOI18N
+        jPanel2.add(logoLBL1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 750));
 
         dashboardPNL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("DASHBOARD");
-        dashboardPNL.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, -1, -1));
+        jLabel7.setFont(new java.awt.Font("Serif", 1, 100)); // NOI18N
+        jLabel7.setText("HELLO,");
+        dashboardPNL.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, -10, 412, 179));
+
+        jPanel1.setBackground(new java.awt.Color(10, 61, 98));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setFont(new java.awt.Font("Serif", 1, 100)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("ADMIN!");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
+
+        jToggleButton1.setText("LOGOUT");
+        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, 170, 90));
+
+        jToggleButton2.setText("ROOM");
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 180, 90));
+
+        jToggleButton3.setText("BOOKING");
+        jPanel1.add(jToggleButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 170, 90));
+
+        CUSTOMERBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/multiple-users-silhouette (1).png"))); // NOI18N
+        CUSTOMERBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CUSTOMERBTNActionPerformed(evt);
+            }
+        });
+        jPanel1.add(CUSTOMERBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 180, 90));
+
+        dashboardPNL.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 460, 430));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dashborad.png"))); // NOI18N
+        dashboardPNL.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-210, 0, -1, -1));
 
         JTabbedPane.addTab("DASHBOARD", dashboardPNL);
 
@@ -168,7 +220,7 @@ public class Admin extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(roomTable);
 
-        roomsPNL.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 430, 570));
+        roomsPNL.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 430, 570));
 
         addBTN.setText("ADD");
         addBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -176,33 +228,33 @@ public class Admin extends javax.swing.JFrame {
                 addBTNActionPerformed(evt);
             }
         });
-        roomsPNL.add(addBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 460, 130, 40));
-        roomsPNL.add(searchTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 100, 200, 40));
+        roomsPNL.add(addBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 510, 130, 40));
+        roomsPNL.add(searchTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 150, 200, 40));
 
         roomNo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         roomNo.setText("Room No:");
-        roomsPNL.add(roomNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 180, 90, 40));
+        roomsPNL.add(roomNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 230, 90, 40));
 
         roomType.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         roomType.setText("Room Type:");
-        roomsPNL.add(roomType, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 240, 110, 40));
+        roomsPNL.add(roomType, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 290, 110, 40));
 
         roomNoTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 roomNoTXTActionPerformed(evt);
             }
         });
-        roomsPNL.add(roomNoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 180, 160, 40));
-        roomsPNL.add(roomTypeTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 240, 160, 40));
-        roomsPNL.add(priceTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 300, 160, 40));
+        roomsPNL.add(roomNoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 230, 160, 40));
+        roomsPNL.add(roomTypeTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 290, 160, 40));
+        roomsPNL.add(priceTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 350, 160, 40));
 
         priceLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         priceLBL.setText("Price:");
-        roomsPNL.add(priceLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 300, 70, 40));
+        roomsPNL.add(priceLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 350, 70, 40));
 
         statusLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         statusLBL.setText("Status:");
-        roomsPNL.add(statusLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 360, 80, 40));
+        roomsPNL.add(statusLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 410, 80, 40));
 
         statusCBX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Booked", "Under Maintenance" }));
         statusCBX.addActionListener(new java.awt.event.ActionListener() {
@@ -210,7 +262,7 @@ public class Admin extends javax.swing.JFrame {
                 statusCBXActionPerformed(evt);
             }
         });
-        roomsPNL.add(statusCBX, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 360, 160, 40));
+        roomsPNL.add(statusCBX, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 410, 160, 40));
 
         searchBTN1.setText("SEARCH");
         searchBTN1.addActionListener(new java.awt.event.ActionListener() {
@@ -218,7 +270,7 @@ public class Admin extends javax.swing.JFrame {
                 searchBTN1ActionPerformed(evt);
             }
         });
-        roomsPNL.add(searchBTN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 100, 80, 40));
+        roomsPNL.add(searchBTN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 150, 80, 40));
 
         updateBTN.setText("UPDATE");
         updateBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -226,7 +278,7 @@ public class Admin extends javax.swing.JFrame {
                 updateBTNActionPerformed(evt);
             }
         });
-        roomsPNL.add(updateBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 460, 130, 40));
+        roomsPNL.add(updateBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 510, 130, 40));
 
         deleteBTN.setText("DELETE");
         deleteBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -234,7 +286,7 @@ public class Admin extends javax.swing.JFrame {
                 deleteBTNActionPerformed(evt);
             }
         });
-        roomsPNL.add(deleteBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 510, 130, 40));
+        roomsPNL.add(deleteBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 560, 130, 40));
 
         clearBTN.setText("CLEAR");
         clearBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -242,14 +294,40 @@ public class Admin extends javax.swing.JFrame {
                 clearBTNActionPerformed(evt);
             }
         });
-        roomsPNL.add(clearBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 510, 130, 40));
+        roomsPNL.add(clearBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 560, 130, 40));
+
+        jLabel10.setFont(new java.awt.Font("Serif", 1, 48)); // NOI18N
+        jLabel10.setText("ROOM INFORMATION");
+        roomsPNL.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, -1, -1));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/BG.png"))); // NOI18N
+        roomsPNL.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(-210, 0, -1, -1));
 
         JTabbedPane.addTab("ROOMS", roomsPNL);
 
         bookingsPNL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setText("BOOKINGS");
-        bookingsPNL.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, -1, -1));
+        bookingTBL.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Booking ID", "Checkin Date", "Checkout Date", "Status", "Customer ID", "Room ID"
+            }
+        ));
+        jScrollPane2.setViewportView(bookingTBL);
+
+        bookingsPNL.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 820, 580));
+
+        jLabel6.setFont(new java.awt.Font("Serif", 1, 48)); // NOI18N
+        jLabel6.setText("BOOKING INFORMATION");
+        bookingsPNL.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/BG.png"))); // NOI18N
+        bookingsPNL.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-210, 0, -1, -1));
 
         JTabbedPane.addTab("BOOKING", bookingsPNL);
 
@@ -262,8 +340,28 @@ public class Admin extends javax.swing.JFrame {
 
         customersPNL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("CUSTOMERS");
-        customersPNL.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, -1, -1));
+        jLabel2.setFont(new java.awt.Font("Serif", 1, 48)); // NOI18N
+        jLabel2.setText("CUSTOMERS INFORMATION");
+        customersPNL.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
+
+        customerTBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        customerTBL.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Customer ID", "Full Name", "Phone Number", "Email"
+            }
+        ));
+        jScrollPane3.setViewportView(customerTBL);
+
+        customersPNL.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 850, 600));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/BG.png"))); // NOI18N
+        customersPNL.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-210, 0, -1, -1));
 
         JTabbedPane.addTab("CUSTOMERS", customersPNL);
 
@@ -274,7 +372,7 @@ public class Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBTNActionPerformed
-        Load loadFrame = new Load();
+        Login loadFrame = new Login();
         this.setVisible(false);
         loadFrame.setVisible(true);
     }//GEN-LAST:event_logoutBTNActionPerformed
@@ -292,16 +390,62 @@ public class Admin extends javax.swing.JFrame {
         JTabbedPane.setSelectedIndex(2);
     }//GEN-LAST:event_bookingBTNActionPerformed
 
-    private void reportsBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportsBTNActionPerformed
-        JTabbedPane.setSelectedIndex(3);
-    }//GEN-LAST:event_reportsBTNActionPerformed
-
     private void customersBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customersBTNActionPerformed
         JTabbedPane.setSelectedIndex(4);
     }//GEN-LAST:event_customersBTNActionPerformed
 
     private void addBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBTNActionPerformed
+        // Get values from text fields and combo box
+    String roomID = roomNoTXT.getText().trim();
+    String roomType = roomTypeTXT.getText().trim();
+    String price = priceTXT.getText().trim();
+    String availability = (String) statusCBX.getSelectedItem(); // Get selected item from combo box
 
+    // Validate input fields
+    if (roomID.isEmpty() || roomType.isEmpty() || price.isEmpty() || availability == null) {
+        JOptionPane.showMessageDialog(null, "Please fill in all fields", "Warning", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    // Convert price to double
+    double roomPrice;
+    try {
+        roomPrice = Double.parseDouble(price);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Invalid price format", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // SQL query to insert the room
+    String query = "INSERT INTO room (roomID, roomType, price, availabilityStatus) VALUES (?, ?, ?, ?)";
+
+    // Get database connection
+    Connection conn = DatabaseConnection.getInstance().getConnection();
+
+    // Ensure connection is not null before proceeding
+    if (conn == null) {
+        JOptionPane.showMessageDialog(null, "Database connection error", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    try (PreparedStatement ps = conn.prepareStatement(query)) {
+        ps.setString(1, roomID);
+        ps.setString(2, roomType);
+        ps.setDouble(3, roomPrice);
+        ps.setString(4, availability);
+
+        // Execute update
+        int rowsInserted = ps.executeUpdate();
+        if (rowsInserted > 0) {
+            JOptionPane.showMessageDialog(null, "Room added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Failed to add room", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error adding room: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_addBTNActionPerformed
 
     private void roomNoTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomNoTXTActionPerformed
@@ -313,20 +457,166 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_statusCBXActionPerformed
 
     private void searchBTN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBTN1ActionPerformed
+    // Get Room ID from search field
+    String roomID = searchTXT.getText().trim();
 
+    // Validate input (ensure it's not empty)
+    if (roomID.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Please enter a Room ID", "Warning", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    // SQL query to fetch room details
+    String query = "SELECT roomID, roomType, price, availabilityStatus FROM room WHERE roomID = ?";
+
+    // Get the existing database connection
+    Connection conn = DatabaseConnection.getInstance().getConnection();
+
+    // Ensure connection is not null before proceeding
+    if (conn == null) {
+        JOptionPane.showMessageDialog(null, "Database connection error", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    try (PreparedStatement ps = conn.prepareStatement(query)) {
+        ps.setString(1, roomID); // Set the roomID parameter
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            // Fetch values from result set
+            int fetchedRoomID = rs.getInt("roomID");
+            String roomType = rs.getString("roomType");
+            double price = rs.getDouble("price");
+            String availability = rs.getString("availabilityStatus");
+
+            // Display data in text fields
+            roomNoTXT.setText(String.valueOf(fetchedRoomID));
+            roomTypeTXT.setText(roomType);
+            priceTXT.setText(String.valueOf(price));
+            
+            // Fix: Set the availability status in the combo box
+            statusCBX.setSelectedItem(availability);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Room not found", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error retrieving room data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_searchBTN1ActionPerformed
 
     private void updateBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBTNActionPerformed
-        // TODO add your handling code here:
+        // Get values from text fields and combo box
+    String roomID = roomNoTXT.getText().trim();
+    String roomType = roomTypeTXT.getText().trim();
+    String price = priceTXT.getText().trim();
+    String availability = (String) statusCBX.getSelectedItem(); // Get selected item from combo box
+
+    // Validate input fields
+    if (roomID.isEmpty() || roomType.isEmpty() || price.isEmpty() || availability == null) {
+        JOptionPane.showMessageDialog(null, "Please fill in all fields", "Warning", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    // Convert price to double
+    double roomPrice;
+    try {
+        roomPrice = Double.parseDouble(price);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Invalid price format", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // SQL query to update the room
+    String query = "UPDATE room SET roomType = ?, price = ?, availabilityStatus = ? WHERE roomID = ?";
+
+    // Get database connection
+    Connection conn = DatabaseConnection.getInstance().getConnection();
+
+    // Ensure connection is not null before proceeding
+    if (conn == null) {
+        JOptionPane.showMessageDialog(null, "Database connection error", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    try (PreparedStatement ps = conn.prepareStatement(query)) {
+        ps.setString(1, roomType);
+        ps.setDouble(2, roomPrice);
+        ps.setString(3, availability);
+        ps.setString(4, roomID);
+
+        // Execute update
+        int rowsUpdated = ps.executeUpdate();
+        if (rowsUpdated > 0) {
+            JOptionPane.showMessageDialog(null, "Room updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "No room found with this ID", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error updating room: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_updateBTNActionPerformed
 
     private void deleteBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBTNActionPerformed
-        // TODO add your handling code here:
+        // Get Room ID from text field
+    String roomID = roomNoTXT.getText().trim();
+
+    // Validate input
+    if (roomID.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Please enter a Room ID to delete", "Warning", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    // Confirm before deleting
+    int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this room?", "Confirm Deletion", JOptionPane.YES_NO_OPTION);
+    if (confirm != JOptionPane.YES_OPTION) {
+        return;
+    }
+
+    // SQL query to delete room
+    String query = "DELETE FROM room WHERE roomID = ?";
+
+    // Get database connection
+    Connection conn = DatabaseConnection.getInstance().getConnection();
+
+    if (conn == null) {
+        JOptionPane.showMessageDialog(null, "Database connection error", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    try (PreparedStatement ps = conn.prepareStatement(query)) {
+        ps.setString(1, roomID);
+
+        // Execute delete
+        int rowsDeleted = ps.executeUpdate();
+        if (rowsDeleted > 0) {
+            JOptionPane.showMessageDialog(null, "Room deleted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            clearFields(); // Clear fields after deletion
+        } else {
+            JOptionPane.showMessageDialog(null, "No room found with this ID", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error deleting room: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_deleteBTNActionPerformed
 
     private void clearBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBTNActionPerformed
         clearFields();
     }//GEN-LAST:event_clearBTNActionPerformed
+
+    private void CUSTOMERBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CUSTOMERBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CUSTOMERBTNActionPerformed
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     public void loadRoomDataToTable() {
     // SQL query to fetch room data
@@ -368,6 +658,89 @@ public class Admin extends javax.swing.JFrame {
     }
 }
 
+    public void loadBookingDataToTable() {
+    // SQL query to fetch booking data
+    String query = "SELECT bookingID, checkInDate, checkOutDate, status, customerID, roomID FROM booking";
+
+    // Get the existing database connection from the DatabaseConnection singleton
+    Connection conn = DatabaseConnection.getInstance().getConnection();
+
+    // Ensure the connection is not null before proceeding
+    if (conn == null) {
+        JOptionPane.showMessageDialog(null, "Unable to connect to the database", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Prepare the PreparedStatement and ResultSet to execute the query
+    try (PreparedStatement ps = conn.prepareStatement(query);
+         ResultSet rs = ps.executeQuery()) {
+
+        // Create a DefaultTableModel to handle the table data
+        DefaultTableModel model = (DefaultTableModel) bookingTBL.getModel();
+        model.setRowCount(0); // Clear existing rows
+
+        // Iterate over the result set and add rows to the table
+        while (rs.next()) {
+            int bookingID = rs.getInt("bookingID");
+            Date checkInDate = rs.getDate("checkInDate");
+            Date checkOutDate = rs.getDate("checkOutDate"); // Can be NULL
+            String status = rs.getString("status");
+            int customerID = rs.getInt("customerID");
+            int roomID = rs.getInt("roomID");
+
+            // Add row to the table
+            model.addRow(new Object[]{bookingID, checkInDate, checkOutDate, status, customerID, roomID});
+        }
+
+    } catch (SQLException e) {
+        // Log or handle the exception as needed
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error loading booking data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+    public void loadCustomerDataToTable() {
+    // SQL query to fetch customer data (excluding username and password)
+    String query = "SELECT customerID, fullName, phoneNumber, email FROM customer";
+
+    // Get the existing database connection from the DatabaseConnection singleton
+    Connection conn = DatabaseConnection.getInstance().getConnection();
+
+    // Ensure the connection is not null before proceeding
+    if (conn == null) {
+        JOptionPane.showMessageDialog(null, "Unable to connect to the database", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Prepare the PreparedStatement and ResultSet to execute the query
+    try (PreparedStatement ps = conn.prepareStatement(query);
+         ResultSet rs = ps.executeQuery()) {
+
+        // Create a DefaultTableModel to handle the table data
+        DefaultTableModel model = (DefaultTableModel) customerTBL.getModel();
+        model.setRowCount(0); // Clear existing rows
+
+        // Iterate over the result set and add rows to the table
+        while (rs.next()) {
+            int customerID = rs.getInt("customerID");
+            String fullName = rs.getString("fullName");
+            String phoneNumber = rs.getString("phoneNumber");
+            String email = rs.getString("email");
+
+            // Add row to the table
+            model.addRow(new Object[]{customerID, fullName, phoneNumber, email});
+        }
+
+    } catch (SQLException e) {
+        // Log or handle the exception as needed
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error loading customer data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -414,30 +787,48 @@ public class Admin extends javax.swing.JFrame {
 }
 
 
+    
+    
+    
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton CUSTOMERBTN;
     private javax.swing.JTabbedPane JTabbedPane;
     private javax.swing.JButton addBTN;
     private javax.swing.JButton bookingBTN;
+    private javax.swing.JTable bookingTBL;
     private javax.swing.JPanel bookingsPNL;
     private javax.swing.JButton clearBTN;
+    private javax.swing.JTable customerTBL;
     private javax.swing.JButton customersBTN;
     private javax.swing.JPanel customersPNL;
     private javax.swing.JButton dashboardBTN;
     private javax.swing.JPanel dashboardPNL;
     private javax.swing.JButton deleteBTN;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JLabel logoLBL;
+    private javax.swing.JLabel logoLBL1;
     private javax.swing.JButton logoutBTN;
     private javax.swing.JLabel priceLBL;
     private javax.swing.JTextField priceTXT;
-    private javax.swing.JButton reportsBTN;
     private javax.swing.JPanel reportsPNL;
     private javax.swing.JLabel roomNo;
     private javax.swing.JTextField roomNoTXT;
@@ -450,6 +841,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTextField searchTXT;
     private javax.swing.JComboBox<String> statusCBX;
     private javax.swing.JLabel statusLBL;
+    private javax.swing.JLabel stayeaseLBL3;
     private javax.swing.JButton updateBTN;
     // End of variables declaration//GEN-END:variables
 }
