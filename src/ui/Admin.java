@@ -176,10 +176,15 @@ public class Admin extends javax.swing.JFrame {
         jLabel8.setText("ADMIN!");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
-        jToggleButton1.setText("LOGOUT");
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logout.png"))); // NOI18N
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, 170, 90));
 
-        jToggleButton2.setText("ROOM");
+        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bed64.png"))); // NOI18N
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton2ActionPerformed(evt);
@@ -187,7 +192,12 @@ public class Admin extends javax.swing.JFrame {
         });
         jPanel1.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 180, 90));
 
-        jToggleButton3.setText("BOOKING");
+        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/appointment.png"))); // NOI18N
+        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jToggleButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 170, 90));
 
         CUSTOMERBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/multiple-users-silhouette (1).png"))); // NOI18N
@@ -611,12 +621,22 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_clearBTNActionPerformed
 
     private void CUSTOMERBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CUSTOMERBTNActionPerformed
-        // TODO add your handling code here:
+        JTabbedPane.setSelectedIndex(4);
     }//GEN-LAST:event_CUSTOMERBTNActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-        // TODO add your handling code here:
+        JTabbedPane.setSelectedIndex(1);
     }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+        JTabbedPane.setSelectedIndex(2);
+    }//GEN-LAST:event_jToggleButton3ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        Login loginFrame = new Login();
+        this.setVisible(false);
+        loginFrame.setVisible(true);
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     public void loadRoomDataToTable() {
     // SQL query to fetch room data
