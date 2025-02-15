@@ -8,6 +8,23 @@ import java.awt.List;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.data.category.DefaultCategoryDataset;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
 /**
  *
  * @author JESSEN SALAYSAY
@@ -22,6 +39,7 @@ public class Admin extends javax.swing.JFrame {
         loadRoomDataToTable();
         loadBookingDataToTable();  
         loadCustomerDataToTable();
+        showRoomStatusChart();
         
     }
 
@@ -44,6 +62,7 @@ public class Admin extends javax.swing.JFrame {
         bookingBTN = new javax.swing.JButton();
         customersBTN = new javax.swing.JButton();
         logoLBL1 = new javax.swing.JLabel();
+        reportsBTN = new javax.swing.JButton();
         JTabbedPane = new javax.swing.JTabbedPane();
         dashboardPNL = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -79,7 +98,7 @@ public class Admin extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         reportsPNL = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         customersPNL = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -116,7 +135,7 @@ public class Admin extends javax.swing.JFrame {
                 logoutBTNActionPerformed(evt);
             }
         });
-        jPanel2.add(logoutBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 150, 40));
+        jPanel2.add(logoutBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 550, 150, 40));
 
         logoLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/200whiteLOGO.png"))); // NOI18N
         jPanel2.add(logoLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, -1));
@@ -146,7 +165,7 @@ public class Admin extends javax.swing.JFrame {
                 bookingBTNActionPerformed(evt);
             }
         });
-        jPanel2.add(bookingBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 150, 40));
+        jPanel2.add(bookingBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 150, 40));
 
         customersBTN.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         customersBTN.setText("CUSTOMERS");
@@ -155,10 +174,19 @@ public class Admin extends javax.swing.JFrame {
                 customersBTNActionPerformed(evt);
             }
         });
-        jPanel2.add(customersBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 150, 40));
+        jPanel2.add(customersBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 150, 40));
 
         logoLBL1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/200whiteLOGO.png"))); // NOI18N
         jPanel2.add(logoLBL1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, -1));
+
+        reportsBTN.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        reportsBTN.setText("REPORTS");
+        reportsBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportsBTNActionPerformed(evt);
+            }
+        });
+        jPanel2.add(reportsBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 150, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 750));
 
@@ -343,8 +371,8 @@ public class Admin extends javax.swing.JFrame {
 
         reportsPNL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setText("REPORTS");
-        reportsPNL.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, -1, -1));
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/BG.png"))); // NOI18N
+        reportsPNL.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(-210, 0, -1, -1));
 
         JTabbedPane.addTab("REPORTS", reportsPNL);
 
@@ -638,6 +666,11 @@ public class Admin extends javax.swing.JFrame {
         loginFrame.setVisible(true);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
+    private void reportsBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportsBTNActionPerformed
+        // TODO add your handling code here:
+        JTabbedPane.setSelectedIndex(3);
+    }//GEN-LAST:event_reportsBTNActionPerformed
+
     public void loadRoomDataToTable() {
     // SQL query to fetch room data
     String query = "SELECT roomID, roomType, price, availabilityStatus FROM room";
@@ -757,6 +790,80 @@ public class Admin extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Error loading customer data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
+    
+    private void showRoomStatusChart() {
+    // Create dataset for room availability
+    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+    
+    // Database connection and query
+    Connection conn = DatabaseConnection.getInstance().getConnection();
+    Map<String, Color> statusColors = new HashMap<>(); // Store status-color mapping
+    int statusCount = 0; // Track number of statuses
+
+    if (conn != null) {
+        String query = "SELECT availabilityStatus, COUNT(*) AS roomCount FROM room GROUP BY availabilityStatus";
+
+        try (PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String status = rs.getString("availabilityStatus");
+                int roomCount = rs.getInt("roomCount");
+                dataset.addValue(roomCount, status, "Room Status");
+
+                // Generate a unique color based on status count
+                float hue = (float) statusCount / 10; // Ensures evenly spaced colors
+                Color uniqueColor = Color.getHSBColor(hue, 0.8f, 0.9f);
+                statusColors.put(status, uniqueColor);
+                
+                statusCount++;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, 
+                "Error fetching room data: " + e.getMessage(), 
+                "Database Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // Create the bar chart
+    JFreeChart chart = ChartFactory.createBarChart(
+            "Room Status Distribution",  // Chart title
+            "Availability Status",        // X-Axis Label
+            "Number of Rooms",           // Y-Axis Label
+            dataset,                      // Dataset
+            PlotOrientation.VERTICAL,     // Orientation
+            true,                         // Enable legend
+            true,                         // Enable tooltips
+            false                         // Disable URLs
+    );
+
+    // Customize colors per status
+    CategoryPlot plot = chart.getCategoryPlot();
+    BarRenderer renderer = (BarRenderer) plot.getRenderer();
+
+    int index = 0;
+    for (Object obj : dataset.getRowKeys()) { // Get row keys (availability statuses)
+        String status = obj.toString(); // Convert Object to String
+        if (statusColors.containsKey(status)) {
+            renderer.setSeriesPaint(index, statusColors.get(status));
+        }
+        index++;
+    }
+
+    // Create chart panel
+    ChartPanel chartPanel = new ChartPanel(chart);
+    chartPanel.setBounds(230, 100, 880, 600); // Set (x, y, width, height)
+
+    // Ensure jLabel9 allows adding components
+    jLabel11.setLayout(null);
+    jLabel11.add(chartPanel, BorderLayout.CENTER);
+
+    jLabel11.revalidate(); // Refresh panel
+    jLabel11.repaint();    // Redraw panel
+}
+
 
 
     
@@ -827,8 +934,8 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JButton deleteBTN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -849,6 +956,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JButton logoutBTN;
     private javax.swing.JLabel priceLBL;
     private javax.swing.JTextField priceTXT;
+    private javax.swing.JButton reportsBTN;
     private javax.swing.JPanel reportsPNL;
     private javax.swing.JLabel roomNo;
     private javax.swing.JTextField roomNoTXT;

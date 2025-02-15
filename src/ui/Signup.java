@@ -19,8 +19,12 @@ public class Signup extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        stayeaseLBL3 = new javax.swing.JLabel();
+        stayeaseLBL2 = new javax.swing.JLabel();
+        stayeaseLBL = new javax.swing.JLabel();
+        stayeaseLBL4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        backBTN = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         singupLBL = new javax.swing.JLabel();
         passwordLBL = new javax.swing.JLabel();
@@ -32,12 +36,32 @@ public class Signup extends javax.swing.JFrame {
         phonenumberTXT = new javax.swing.JTextField();
         passwordTXT = new javax.swing.JPasswordField();
         singupBTN = new javax.swing.JButton();
-        backBTN = new javax.swing.JButton();
         usernameLBL = new javax.swing.JLabel();
         usernameTXT = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        stayeaseLBL6 = new javax.swing.JLabel();
+        stayeaseLBL7 = new javax.swing.JLabel();
+        stayeaseLBL1 = new javax.swing.JLabel();
+        stayeaseLBL5 = new javax.swing.JLabel();
+
+        stayeaseLBL3.setBackground(new java.awt.Color(245, 245, 220));
+        stayeaseLBL3.setFont(new java.awt.Font("Serif", 3, 70)); // NOI18N
+        stayeaseLBL3.setForeground(new java.awt.Color(245, 245, 220));
+        stayeaseLBL3.setText("S");
+
+        stayeaseLBL2.setBackground(new java.awt.Color(245, 245, 220));
+        stayeaseLBL2.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        stayeaseLBL2.setForeground(new java.awt.Color(245, 245, 220));
+        stayeaseLBL2.setText("TAY ");
+
+        stayeaseLBL.setBackground(new java.awt.Color(245, 245, 220));
+        stayeaseLBL.setFont(new java.awt.Font("Serif", 3, 70)); // NOI18N
+        stayeaseLBL.setForeground(new java.awt.Color(245, 245, 220));
+        stayeaseLBL.setText("E");
+
+        stayeaseLBL4.setBackground(new java.awt.Color(245, 245, 220));
+        stayeaseLBL4.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        stayeaseLBL4.setForeground(new java.awt.Color(245, 245, 220));
+        stayeaseLBL4.setText("ASE ");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
@@ -47,50 +71,52 @@ public class Signup extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setBackground(new java.awt.Color(245, 245, 220));
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 70)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(245, 245, 220));
-        jLabel2.setText("S");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
+        backBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back.png"))); // NOI18N
+        backBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBTNActionPerformed(evt);
+            }
+        });
+        jPanel1.add(backBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 40));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(235, 235, 235));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         singupLBL.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         singupLBL.setText("SIGN UP");
-        jPanel2.add(singupLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 100, -1));
+        jPanel2.add(singupLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 100, -1));
 
         passwordLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         passwordLBL.setText("PASSWORD:");
-        jPanel2.add(passwordLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, -1, -1));
+        jPanel2.add(passwordLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, -1, -1));
 
         fnameLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         fnameLBL.setText("FULL NAME:");
-        jPanel2.add(fnameLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, -1));
+        jPanel2.add(fnameLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
 
         emailLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         emailLBL.setText("EMAIL:");
-        jPanel2.add(emailLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, -1));
+        jPanel2.add(emailLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
 
         phonenumberLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         phonenumberLBL.setText("PHONE NUMBER:");
-        jPanel2.add(phonenumberLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
-        jPanel2.add(emailTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 240, 30));
+        jPanel2.add(phonenumberLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
+        jPanel2.add(emailTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 240, 30));
 
         fnameTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fnameTXTActionPerformed(evt);
             }
         });
-        jPanel2.add(fnameTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 240, 30));
-        jPanel2.add(phonenumberTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 240, 30));
+        jPanel2.add(fnameTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 240, 30));
+        jPanel2.add(phonenumberTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 240, 30));
 
         passwordTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordTXTActionPerformed(evt);
             }
         });
-        jPanel2.add(passwordTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 240, 30));
+        jPanel2.add(passwordTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 240, 30));
 
         singupBTN.setBackground(new java.awt.Color(10, 61, 98));
         singupBTN.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -101,46 +127,50 @@ public class Signup extends javax.swing.JFrame {
                 singupBTNActionPerformed(evt);
             }
         });
-        jPanel2.add(singupBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, -1, -1));
-
-        backBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back.png"))); // NOI18N
-        backBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBTNActionPerformed(evt);
-            }
-        });
-        jPanel2.add(backBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 40));
+        jPanel2.add(singupBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, -1, -1));
 
         usernameLBL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         usernameLBL.setText("USERNAME:");
-        jPanel2.add(usernameLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, -1, -1));
-        jPanel2.add(usernameTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 240, 30));
+        jPanel2.add(usernameLBL, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 680, 430));
+        usernameTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameTXTActionPerformed(evt);
+            }
+        });
+        jPanel2.add(usernameTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 240, 30));
 
-        jLabel3.setBackground(new java.awt.Color(245, 245, 220));
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(245, 245, 220));
-        jLabel3.setText("TAY");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 390, 600));
 
-        jLabel4.setBackground(new java.awt.Color(245, 245, 220));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 70)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(245, 245, 220));
-        jLabel4.setText("E");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
+        stayeaseLBL6.setBackground(new java.awt.Color(245, 245, 220));
+        stayeaseLBL6.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        stayeaseLBL6.setForeground(new java.awt.Color(245, 245, 220));
+        stayeaseLBL6.setText("TAY ");
+        jPanel1.add(stayeaseLBL6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 90, 40));
 
-        jLabel5.setBackground(new java.awt.Color(245, 245, 220));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(245, 245, 220));
-        jLabel5.setText("ASE");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, -1, -1));
+        stayeaseLBL7.setBackground(new java.awt.Color(245, 245, 220));
+        stayeaseLBL7.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        stayeaseLBL7.setForeground(new java.awt.Color(245, 245, 220));
+        stayeaseLBL7.setText("ASE ");
+        jPanel1.add(stayeaseLBL7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 130, 60));
+
+        stayeaseLBL1.setBackground(new java.awt.Color(245, 245, 220));
+        stayeaseLBL1.setFont(new java.awt.Font("Serif", 3, 70)); // NOI18N
+        stayeaseLBL1.setForeground(new java.awt.Color(245, 245, 220));
+        stayeaseLBL1.setText("E");
+        jPanel1.add(stayeaseLBL1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 60, -1));
+
+        stayeaseLBL5.setBackground(new java.awt.Color(245, 245, 220));
+        stayeaseLBL5.setFont(new java.awt.Font("Serif", 3, 70)); // NOI18N
+        stayeaseLBL5.setForeground(new java.awt.Color(245, 245, 220));
+        stayeaseLBL5.setText("S");
+        jPanel1.add(stayeaseLBL5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 40, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,6 +241,10 @@ public class Signup extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_fnameTXTActionPerformed
 
+    private void usernameTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameTXTActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -252,10 +286,6 @@ public class Signup extends javax.swing.JFrame {
     private javax.swing.JTextField emailTXT;
     private javax.swing.JLabel fnameLBL;
     private javax.swing.JTextField fnameTXT;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel passwordLBL;
@@ -264,6 +294,14 @@ public class Signup extends javax.swing.JFrame {
     private javax.swing.JTextField phonenumberTXT;
     private javax.swing.JButton singupBTN;
     private javax.swing.JLabel singupLBL;
+    private javax.swing.JLabel stayeaseLBL;
+    private javax.swing.JLabel stayeaseLBL1;
+    private javax.swing.JLabel stayeaseLBL2;
+    private javax.swing.JLabel stayeaseLBL3;
+    private javax.swing.JLabel stayeaseLBL4;
+    private javax.swing.JLabel stayeaseLBL5;
+    private javax.swing.JLabel stayeaseLBL6;
+    private javax.swing.JLabel stayeaseLBL7;
     private javax.swing.JLabel usernameLBL;
     private javax.swing.JTextField usernameTXT;
     // End of variables declaration//GEN-END:variables
