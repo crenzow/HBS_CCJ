@@ -854,7 +854,7 @@ public class Admin extends javax.swing.JFrame {
 
     // Create chart panel
     ChartPanel chartPanel = new ChartPanel(chart);
-    chartPanel.setBounds(230, 100, 880, 600); // Set (x, y, width, height)
+    chartPanel.setBounds(235, 100, 880, 600); // Set (x, y, width, height)
 
     // Ensure jLabel9 allows adding components
     jLabel11.setLayout(null);

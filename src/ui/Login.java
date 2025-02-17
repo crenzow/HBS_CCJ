@@ -223,6 +223,7 @@ public class Login extends javax.swing.JFrame {
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         Signup signUpFrame = new Signup(); // Assuming SignUp is your frame class
         signUpFrame.setVisible(true); // Show the sign-up frame
+        this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     /**

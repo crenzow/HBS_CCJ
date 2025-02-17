@@ -64,8 +64,8 @@ public class Signup extends javax.swing.JFrame {
         stayeaseLBL4.setText("ASE ");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(750, 600));
+        setPreferredSize(new java.awt.Dimension(750, 600));
 
         jPanel1.setBackground(new java.awt.Color(10, 61, 98));
         jPanel1.setMinimumSize(new java.awt.Dimension(700, 600));
@@ -142,39 +142,37 @@ public class Signup extends javax.swing.JFrame {
         });
         jPanel2.add(usernameTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 240, 30));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 340, 600));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 0, 375, 600));
 
         stayeaseLBL6.setBackground(new java.awt.Color(245, 245, 220));
         stayeaseLBL6.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         stayeaseLBL6.setForeground(new java.awt.Color(245, 245, 220));
         stayeaseLBL6.setText("TAY ");
-        jPanel1.add(stayeaseLBL6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 90, 40));
+        jPanel1.add(stayeaseLBL6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 90, 40));
 
         stayeaseLBL7.setBackground(new java.awt.Color(245, 245, 220));
         stayeaseLBL7.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         stayeaseLBL7.setForeground(new java.awt.Color(245, 245, 220));
         stayeaseLBL7.setText("ASE ");
-        jPanel1.add(stayeaseLBL7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 130, 60));
+        jPanel1.add(stayeaseLBL7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 130, 60));
 
         stayeaseLBL1.setBackground(new java.awt.Color(245, 245, 220));
         stayeaseLBL1.setFont(new java.awt.Font("Serif", 3, 70)); // NOI18N
         stayeaseLBL1.setForeground(new java.awt.Color(245, 245, 220));
         stayeaseLBL1.setText("E");
-        jPanel1.add(stayeaseLBL1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 60, -1));
+        jPanel1.add(stayeaseLBL1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 60, -1));
 
         stayeaseLBL5.setBackground(new java.awt.Color(245, 245, 220));
         stayeaseLBL5.setFont(new java.awt.Font("Serif", 3, 70)); // NOI18N
         stayeaseLBL5.setForeground(new java.awt.Color(245, 245, 220));
         stayeaseLBL5.setText("S");
-        jPanel1.add(stayeaseLBL5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 40, -1));
+        jPanel1.add(stayeaseLBL5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 40, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
